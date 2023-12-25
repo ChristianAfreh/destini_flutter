@@ -43,6 +43,14 @@ class StoryBrain {
 
   void restart() => _storyNumber = 0;
 
+  bool buttonShouldBeVisible() {
+    if (_storyNumber == 0 || _storyNumber == 1 || _storyNumber == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void nextStory(int choiceNumber) {
     if (_storyNumber == 0) {
       if (choiceNumber == 1) {
