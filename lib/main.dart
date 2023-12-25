@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:destini_flutter/story_brain.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const Destini());
@@ -11,13 +12,15 @@ class Destini extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark(),
-      home: const StoryPage(),
+      home: StoryPage(),
     );
   }
 }
 
+StoryBrain storyBrain = StoryBrain();
+
 class StoryPage extends StatefulWidget {
-  const StoryPage({super.key});
+  StoryPage({super.key});
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -48,7 +51,7 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 12,
                 child: Center(
                   child: Text(
-                    'Story text will go here.',
+                    storyBrain.getStory(),
                     style: TextStyle(
                       fontSize: 25.0,
                     ),
@@ -58,7 +61,10 @@ class _StoryPageState extends State<StoryPage> {
               Expanded(
                 child: TextButton(
                   onPressed: () {
-                    print('Choice 1 is clicked!');
+                    //Choice 1 made by user
+                    setState(() {
+                      storyBrain.nextStory(1);
+                    });
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
@@ -66,9 +72,9 @@ class _StoryPageState extends State<StoryPage> {
                     ),
                   ),
                   child: Text(
-                    'Choice 1',
+                    storyBrain.getChoice1(),
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 15.0,
                       color: Colors.white,
                     ),
                   ),
@@ -80,7 +86,10 @@ class _StoryPageState extends State<StoryPage> {
               Expanded(
                 child: TextButton(
                   onPressed: () {
-                    print('Choice 2 is clicked!');
+                    //Choice 2 made by user.
+                    setState(() {
+                      storyBrain.nextStory(2);
+                    });
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
@@ -88,9 +97,9 @@ class _StoryPageState extends State<StoryPage> {
                     ),
                   ),
                   child: Text(
-                    'Choice 2',
+                    storyBrain.getChoice2(),
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 15.0,
                       color: Colors.white,
                     ),
                   ),
